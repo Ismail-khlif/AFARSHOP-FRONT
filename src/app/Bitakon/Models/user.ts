@@ -1,6 +1,7 @@
 export class User {
   Userid!: number;
   firstname!:string;
+  username!:string;
   lastName!: string;
   email!:string;
   password!:string;

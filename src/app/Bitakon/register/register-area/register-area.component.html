@@ -23,29 +23,87 @@
                  <p>Already have an account? <a [routerLink]="['/login']">Sign in </a></p>
               </div>
               <div class="login__form">
-                 <form action="#">
-                    <div class="login__input-box">
+                 <form class="form-horizontal auth-form" novalidate
+                       name="rform"
+                       (ngSubmit)="f.form.valid && onRegister()"
+                       #f="ngForm"
+                       novalidate>
+                    <div class="form-group">
                        <div class="login__input-title">
-                          <h4>Enter name <span>*</span></h4>
+                          <h4>Enter username <span>*</span></h4>
                        </div>
                        <div class="login__input">
-                          <input type="text" placeholder="Your full name">
+                          <input type="text" class="form-control" placeholder="Enter username"
+                                 name="firstname"
+                                 [(ngModel)]="form.username"
+                                 required
+                                 #name="ngModel"
+                                 [ngClass]="{ 'is-invalid': f.submitted && username.errors }">
                           <span class="login__input-icon">
                              <i class="fa-solid fa-user"></i>
                           </span>
+                         <div *ngIf="name.errors && f.submitted" class="invalid-feedback">
+                           Firstname is required!
+                         </div>
                        </div>
                     </div>
-                    <div class="login__input-box">
+                    <div class="form-group">
                        <div class="login__input-title">
-                          <h4>Enter email <span>*</span></h4>
+                          <h4>Enter firstname <span>*</span></h4>
                        </div>
                        <div class="login__input">
-                          <input type="text" placeholder="Enter your email">
+                          <input type="text" class="form-control" placeholder="Enter firstname"
+                                 name="firstname"
+                                 [(ngModel)]="form.firstname"
+                                 required
+                                 #firstname="ngModel"
+                                 [ngClass]="{ 'is-invalid': f.submitted && firstname.errors }">
                           <span class="login__input-icon">
                              <i class="fa-light fa-envelope"></i>
                           </span>
+                         <div *ngIf="firstname.errors && f.submitted" class="invalid-feedback">
+                           firstname is required!
+                         </div>
                        </div>
                     </div>
+                   <div class="form-group">
+                     <div class="login__input-title">
+                       <h4>Enter lastname <span>*</span></h4>
+                     </div>
+                     <div class="login__input">
+                       <input type="text" class="form-control" placeholder="Enter lastname"
+                              name="lastname"
+                              [(ngModel)]="form.lastname"
+                              required
+                              #lastname="ngModel"
+                              [ngClass]="{ 'is-invalid': f.submitted && lastname.errors }">
+                       <span class="login__input-icon">
+                             <i class="fa-light fa-envelope"></i>
+                          </span>
+                       <div *ngIf="lastname.errors && f.submitted" class="invalid-feedback">
+                         lastname is required!
+                       </div>
+                     </div>
+                   </div>
+                   <div class="login__input-box">
+                     <div class="login__input-title">
+                       <h4>Enter email <span>*</span></h4>
+                     </div>
+                     <div class="login__input">
+                       <input type="email" class="form-control" placeholder="Enter Email Address"
+                              name="Remail"
+                              [(ngModel)]="form.email"
+                              required
+                              #email="ngModel"
+                              [ngClass]="{ 'is-invalid': f.submitted && email.errors }">
+                       <span class="login__input-icon">
+                             <i class="fa-light fa-envelope"></i>
+                          </span>
+                       <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
+                         Email is required!
+                       </div>
+                     </div>
+                   </div>
                     <div class="login__input-box">
                        <div class="login__input-title d-flex align-items-center justify-content-between">
                           <h4>Password <span>*</span></h4>
@@ -54,17 +112,25 @@
                           </div>
                        </div>
                        <div class="login__input">
-                          <input type="text" placeholder="Enter your email">
+                          <input type="password" class="form-control" placeholder="Enter Password"
+                                 name="Rpassword"
+                                 [(ngModel)]="form.password"
+                                 required
+                                 #password="ngModel"
+                                 [ngClass]="{ 'is-invalid': f.submitted && password.errors }">
                           <span class="login__input-icon">
                              <i class="fa-light fa-lock"></i>
                           </span>
                           <span class="login__input-password-visible">
                              <i class="fa-light fa-eye"></i>
                           </span>
+                         <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
+                           Password is required!
+                         </div>
                        </div>
                     </div>
 
-                    <div class="login__btn mb-20">
+                    <div class="form-group">
                        <button class="tp-btn-4 w-100">register</button>
                     </div>
                     <div class="login__signup text-center">
