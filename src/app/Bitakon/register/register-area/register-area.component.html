@@ -28,6 +28,7 @@
                        (ngSubmit)="f.form.valid && onRegister()"
                        #f="ngForm"
                        novalidate>
+
                     <div class="form-group">
                        <div class="login__input-title">
                           <h4>Enter username <span>*</span></h4>
@@ -37,12 +38,12 @@
                                  name="firstname"
                                  [(ngModel)]="form.username"
                                  required
-                                 #name="ngModel"
+                                 #username="ngModel"
                                  [ngClass]="{ 'is-invalid': f.submitted && username.errors }">
                           <span class="login__input-icon">
                              <i class="fa-solid fa-user"></i>
                           </span>
-                         <div *ngIf="name.errors && f.submitted" class="invalid-feedback">
+                         <div *ngIf="username.errors && f.submitted" class="invalid-feedback">
                            Firstname is required!
                          </div>
                        </div>
@@ -91,7 +92,7 @@
                      </div>
                      <div class="login__input">
                        <input type="email" class="form-control" placeholder="Enter Email Address"
-                              name="Remail"
+                              name="email"
                               [(ngModel)]="form.email"
                               required
                               #email="ngModel"
@@ -113,7 +114,7 @@
                        </div>
                        <div class="login__input">
                           <input type="password" class="form-control" placeholder="Enter Password"
-                                 name="Rpassword"
+                                 name="password"
                                  [(ngModel)]="form.password"
                                  required
                                  #password="ngModel"

@@ -22,16 +22,34 @@
                    <p>We will send a password reset link</p>
                 </div>
                 <div class="login__form">
-                   <form action="#">
+                   <form class="theme-form"
+                         name="form"
+                         (ngSubmit)="f.form.valid && onSubmit()"
+                         #f="ngForm"
+                         novalidate>
                       <div class="login__input-box">
                          <div class="login__input-title">
                             <h4>Enter email <span>*</span></h4>
                          </div>
                          <div class="login__input">
-                            <input type="email" placeholder="Enter your email">
+                            <input type="text" class="form-control" id="email" placeholder="Enter Your Email"
+                                   name="email"
+                                   [(ngModel)]="form.email"
+                                   required
+                                   #email="ngModel"
+                                   [ngClass]="{ 'is-invalid': f.submitted && email.errors }">
                             <span class="login__input-icon">
                                <i class="fa-light fa-envelope"></i>
                             </span>
+                           <div *ngIf="form.email.errors && f.submitted" class="invalid-feedback">
+                             Email is required!
+                           </div>
+                           <div *ngIf="userFaild" class="text-danger mt-2">
+                             User not found!
+                           </div>
+                           <div *ngIf="demDone" class="text-bg-info mt-2">
+                             done ! check your mail.
+                           </div>
                          </div>
                       </div>
 

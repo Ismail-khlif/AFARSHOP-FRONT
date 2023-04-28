@@ -49,17 +49,7 @@ export class AuthService {
 
   private readonly API_URL = 'http://localhost:9090/AFAR/api/auth/';
   ar!: AuthenticationRequest;
-  rr!:{
-  lastName: string;
-  password: string;
-  address: string;
-  dayOfBirth: Date;
-  name: string;
-  telNum: string;
-  cin: string;
-  email: string;
-  username: string
-};
+  rr!:{ lastName: string; password: string; firstname: string; email: string; username: string ;role:string};
 
   login(email: string, password: string): Observable<any> {
     this.ar = {email: email, password:password};
@@ -94,22 +84,31 @@ export class AuthService {
     }
     return false;
   }
-  /*name: null,
+  /*
    lastName: null,
    username: null,
    email: null,
+   firstname:null,
    password: null,
    address: null,
    dayOfBirth: null,
    cin: null,
  // 	telNum: null*/
   // private role: string ="ROLE_SELLER";
-  register(username: string, password: string, name: string, lastName: string, email: string, address: string, dayOfBirth: Date, cin: string, telNum: string): Observable<any> {
-    this.rr = {username, password, name, lastName, email, address, dayOfBirth, cin, telNum};
+  register(lastName: string,password: string,firstname: string,email: string,username: string): Observable<any> {
+      const role = 'ROLE_SELLER';
+    this.rr = { lastName,password,firstname,email,username,role};
     return this.http.post(
       `${this.API_URL}register`,
       this.rr,
       httpOptions
+    );
+  }
+  demResetPassword(email: string): Observable<any> {
+    return this.http.post(
+      `${this.API_URL}demResetPassword/${email}`,
+      null,
+      { observe: 'response' } // observe the response to get the status code
     );
   }
 

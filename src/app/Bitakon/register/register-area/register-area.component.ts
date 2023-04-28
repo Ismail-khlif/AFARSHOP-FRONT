@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from "../../service/auth.service";
-
-
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register-area',
@@ -10,7 +9,7 @@ import { AuthService } from "../../service/auth.service";
   styleUrls: ['./register-area.component.scss']
 })
 export class RegisterAreaComponent {
-  public registerForm: FormGroup;
+  //public registerForm: UntypedFormGroup;
 
   form: any = {
     username: null,
@@ -24,31 +23,25 @@ export class RegisterAreaComponent {
     telNum: null
   };
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
-    this.registerForm = this.createRegisterForm();
+  constructor( private authService: AuthService,private router: Router) {
+   // this.registerForm = this.createRegisterForm();
   }
 
-  createRegisterForm(): FormGroup {
-    return this.formBuilder.group({
-      firstname: [''],
-      lastname: [''],
-      username: [''],
-      email: [''],
+  /*createRegisterForm() {
+    this.registerForm = this.formBuilder.group({
+      userName: [''],
       password: [''],
       confirmPassword: [''],
-      address: [''],
-      dayOfBirth: [''],
-      cin: [''],
-      telNum: ['']
     });
-  }
+  }*/
 
   onRegister(): void {
-    const { username, password, firstname, lastName, email, address, dayOfBirth, cin, telNum } = this.registerForm.value;
-    this.authService.register(username, password, firstname, lastName, email, address, dayOfBirth, cin, telNum)
+    //const { username, password, firstname, lastName, email, address, dayOfBirth, cin, telNum } = this.form.value;
+    this.authService.register(this.form.lastName,this.form.password,this.form.firstname,this.form.email,this.form.username)
       .subscribe(
         response => {
           console.log(response);
+          this.router.navigate(['/login']);
           // handle successful registration response here
         },
         error => {
