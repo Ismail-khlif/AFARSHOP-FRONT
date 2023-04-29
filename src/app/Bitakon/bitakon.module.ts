@@ -133,6 +133,7 @@ import { MaintananceMainComponent } from './maintanance/maintanance-main/maintan
 import { ErrorPageMainComponent } from './error-page/error-page-main/error-page-main.component';
 import { ProfileMainComponent } from './profile/profile-main/profile-main.component';
 import { ProfileAreaComponent } from './profile/profile-area/profile-area.component';
+import { ResetPageComponent } from './reset-page/reset-page.component';
 
 
 
@@ -272,6 +273,7 @@ import { ProfileAreaComponent } from './profile/profile-area/profile-area.compon
     ErrorPageMainComponent,
     ProfileMainComponent,
     ProfileAreaComponent,
+    ResetPageComponent,
   ],
   exports: [
     NgxSliderModule,
