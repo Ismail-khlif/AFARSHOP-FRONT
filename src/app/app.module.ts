@@ -8,6 +8,8 @@ import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpHeaders } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

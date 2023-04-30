@@ -5,7 +5,6 @@ import {map} from 'rxjs/operators';
 import {User} from "../Models/user";
 import {AuthenticationRequest} from "../Models/authentication-request";
 import {environment} from "../../../environments/environment";
-const API_URL = `${environment.BASE_URL}/api/authentication/`;
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -111,5 +110,7 @@ export class AuthService {
       { observe: 'response' } // observe the response to get the status code
     );
   }
-
+  updateProfile(profile: User): Observable<any> {
+    return this.http.put(`${this.API_URL}update-profile`, profile);
+  }
 }
