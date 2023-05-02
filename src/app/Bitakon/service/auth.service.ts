@@ -83,17 +83,6 @@ export class AuthService {
     }
     return false;
   }
-  /*
-   lastName: null,
-   username: null,
-   email: null,
-   firstname:null,
-   password: null,
-   address: null,
-   dayOfBirth: null,
-   cin: null,
- // 	telNum: null*/
-  // private role: string ="ROLE_SELLER";
   register(lastName: string,password: string,firstname: string,email: string,username: string): Observable<any> {
       const role = 'ROLE_SELLER';
     this.rr = { lastName,password,firstname,email,username,role};
@@ -110,6 +99,7 @@ export class AuthService {
       { observe: 'response' } // observe the response to get the status code
     );
   }
+
   updateProfile(profile: User): Observable<any> {
     return this.http.put(`${this.API_URL}update-profile`, profile);
   }

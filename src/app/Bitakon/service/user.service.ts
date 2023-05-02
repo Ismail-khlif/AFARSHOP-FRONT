@@ -2,8 +2,6 @@ import {User} from "../Models/user";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-
-
 import {AuthenticationRequest} from "../Models/authentication-request";
 
 const url = "localhost:9090/AFAR/API/USERS/";
