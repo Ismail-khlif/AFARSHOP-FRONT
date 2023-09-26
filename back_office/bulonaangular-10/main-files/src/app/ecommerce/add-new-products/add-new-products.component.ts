@@ -3,6 +3,8 @@ import {NgForm} from "@angular/forms";
 import {Product} from "../../models/product";
 import {ProductService} from "../../services/product/product.service";
 import {FileHandle} from "../../models/FileHandle";
+import { User } from 'src/app/models/User';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-add-new-products',
@@ -12,8 +14,20 @@ import {FileHandle} from "../../models/FileHandle";
 export class AddNewProductsComponent implements OnInit {
   product:Product=new Product();
   array: FileHandle[] = [];
+  currentUser: User = new User;
+  protected currentToken!: String;
 
-  constructor(private productservice :ProductService) { }
+
+  constructor(private productservice :ProductService, private auth: AuthService) { 
+
+    this.auth.currentUser.subscribe(data => {
+      this.currentUser = data;
+    });
+    this.auth.currentToken.subscribe( data => {
+      this.currentToken = data;
+    });
+
+  }
 
   ngOnInit(): void {
 
@@ -21,7 +35,7 @@ export class AddNewProductsComponent implements OnInit {
     $.getScript("./assets/js/add-new-product-image-upload.js")
   }
   onSubmit(storeForm: NgForm) {
-    //console.log(this.currentToken);
+    console.log(this.currentToken);
 
     const storeFormData = this.prepareFormData(this.product);
     this.productservice.addProduct(storeFormData).subscribe(
